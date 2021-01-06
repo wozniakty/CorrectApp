@@ -1,0 +1,34 @@
+﻿@page "/autocorrect"
+@using AutoCorrect;
+
+<h1>Autocorrect</h1>
+<h3>Choose an Algorithm</h3>
+<select @bind="@corrector">
+    @foreach (var option in Correctors.Options)
+    {
+        <option value="@option.Key"> @option.Key </option>
+    }
+</select>
+
+<h3>Type a Word</h3>
+<input placeholder="Type a word" @bind="checkWord" />
+<button @onclick="CheckInput">Check</button>
+
+<h3>Did you mean?</h3>
+<ul>
+    @foreach (var word in corrections)
+    {
+        <li>@word</li>
+    }
+</ul>
+
+@code {
+    private IEnumerable<string> corrections = new List<string>();
+    private string checkWord;
+    private string corrector = Correctors.Options.First().Key;
+
+    private void CheckInput()
+    {
+        corrections = Correctors.Options[corrector](checkWord);
+    }
+}

@@ -14,21 +14,30 @@
 <input placeholder="Type a word" @bind="checkWord" />
 <button @onclick="CheckInput">Check</button>
 
-<h3>Did you mean?</h3>
-<ul>
-    @foreach (var word in corrections)
-    {
-        <li>@word</li>
-    }
-</ul>
+@switch (result)
+{
+    case SuggestedCorrections corrections:
+        <h3>Did you mean?</h3>
+        <ul>
+            @foreach (var word in corrections.Options)
+            {
+                <li>@word</li>
+            }
+        </ul>
+        break;
+    case NoCorrection:
+        <h3>Nice, that's a real word!</h3>
+        break;
+}
+
 
 @code {
-    private IEnumerable<string> corrections = new List<string>();
+    private CorrectionResult? result = null;
     private string checkWord;
     private string corrector = Correctors.Options.First().Key;
 
     private void CheckInput()
     {
-        corrections = Correctors.Options[corrector](checkWord);
+        result = Correctors.Options[corrector](checkWord);
     }
 }

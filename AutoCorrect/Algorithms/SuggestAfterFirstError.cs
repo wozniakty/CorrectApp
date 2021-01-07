@@ -31,20 +31,24 @@ namespace AutoCorrect.Algorithms
                 }
                 return head;
             });
-        public static IEnumerable<string> Suggest(string input)
+        public static CorrectionResult Suggest(string input)
         {
+            if (Words.AllSet.Contains(input))
+            {
+                return CorrectionResult.NoCorrection();
+            }
             var match = "";
             var current = Head;
             foreach (var letter in input)
             {
                 if (!current.Next.ContainsKey(letter))
                 {
-                    return AllChildStringsAfter(current).Select(s => $"{match}{s}");
+                    return CorrectionResult.Suggest(AllChildStringsAfter(current).Select(s => $"{match}{s}"));
                 }
                 match = $"{match}{letter}";
                 current = current.Next[letter];
             }
-            return new List<string> { "Nice, that's a real word!" };
+            return CorrectionResult.NoCorrection();
         }
 
         private static IEnumerable<string> AllChildStringsAfter(DictTreeNode node) =>

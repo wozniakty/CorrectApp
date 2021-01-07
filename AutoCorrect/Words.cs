@@ -13,9 +13,11 @@ namespace AutoCorrect
         {
             Console.WriteLine("Loading words from file.");
             All = AlphaWords.All;
+            AllSet = new HashSet<string>(All);
             Console.WriteLine("Words loaded.");
         }
 
         public static List<string> All { get; private set; }
+        public static HashSet<string> AllSet { get; private set; }
     }
 }

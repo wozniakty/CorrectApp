@@ -1,0 +1,21 @@
+﻿@using AutoCorrect;
+
+<tr>
+    <td>@Corrector.DisplayName</td>
+    <td>@($"{Profile?.AverageSpeed.ToString() ?? "calculating"}")</td>
+    <td>@($"{Profile?.PercentMatched.ToString() ?? "calculating"}")</td>
+    <td>@($"{Profile?.AverageSpeedOnMatch.ToString() ?? "calculating"}")</td>
+</tr>
+
+@code {
+    [Parameter]
+    public Corrector Corrector { get; set; }
+
+    public AlgorithmProfile Profile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Profile = await Profiling.Profile(Corrector);
+        await base.OnInitializedAsync();
+    }
+}

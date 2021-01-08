@@ -1,0 +1,24 @@
+﻿@page "/profile"
+@using AutoCorrect;
+@using CorrectApp.Pages.Components;
+
+<h1>Profiling the implementations</h1>
+<p>
+    These should provide rough (not guaranteed precise) perf indicators. Note that these numbers are heavily dependent on machine speed, 
+    and I'm using a free azure machine sooooo don't correlate them with real times.
+</p>
+<table>
+    <tr>
+        <th>Algorithm</th>
+        <th>Average Perf (smaller is better)</th>
+        <th>Accuracy (successfully matched with valid suggestion)</th>
+        <th>Average Perf on Success</th>
+    </tr>
+    @foreach (var corrector in Correctors.Options)
+    {
+        <ProfileRow Corrector="@corrector" />
+    }
+</table>
+
+@{
+}

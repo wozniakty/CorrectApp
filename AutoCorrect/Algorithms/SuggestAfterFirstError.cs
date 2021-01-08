@@ -35,7 +35,7 @@ namespace AutoCorrect.Algorithms
         {
             if (Words.AllSet.Contains(input))
             {
-                return CorrectionResult.NoCorrection();
+                return CorrectionResult.ExactMatch();
             }
             var match = "";
             var current = Head;
@@ -48,7 +48,7 @@ namespace AutoCorrect.Algorithms
                 match = $"{match}{letter}";
                 current = current.Next[letter];
             }
-            return CorrectionResult.NoCorrection();
+            return CorrectionResult.ExactMatch();
         }
 
         private static IEnumerable<string> AllChildStringsAfter(DictTreeNode node) =>

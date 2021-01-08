@@ -3,10 +3,10 @@
 
 <h1>Autocorrect</h1>
 <h3>Choose an Algorithm</h3>
-<select @bind="@corrector">
+<select @bind="@selectedCorrector">
     @foreach (var option in Correctors.Options)
     {
-        <option value="@option.Key"> @option.Key </option>
+        <option value="@option.DisplayName"> @option.DisplayName </option>
     }
 </select>
 
@@ -25,8 +25,15 @@
             }
         </ul>
         break;
-    case NoCorrection:
+    case ExactMatch:
         <h3>Nice, that's a real word!</h3>
+        break;
+    case NoMatch:
+        <h3>Sorry, I couldn't find a similar enough word</h3>
+        break;
+    case Error e:
+        <h3>Oh no... something went wrong :|</h3>
+        <p>@e.Reason</p>
         break;
 }
 
@@ -34,10 +41,10 @@
 @code {
     private CorrectionResult? result = null;
     private string checkWord;
-    private string corrector = Correctors.Options.First().Key;
+    private string selectedCorrector = Correctors.Options.First().DisplayName;
 
     private void CheckInput()
     {
-        result = Correctors.Options[corrector](checkWord);
+        result = Correctors.Map[selectedCorrector].Suggest(checkWord);
     }
 }

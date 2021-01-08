@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrectApp", "CorrectApp\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoCorrect", "AutoCorrect\AutoCorrect.csproj", "{75DEA03E-9D6D-4941-8822-16D9FBA8E5C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorrectFixtures", "CorrectFixtures\CorrectFixtures.csproj", "{D6E68091-67E8-428D-846C-5DE80BE2B00E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrectFixtures", "CorrectFixtures\CorrectFixtures.csproj", "{D6E68091-67E8-428D-846C-5DE80BE2B00E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12AD7F90-9656-4238-A621-5B9C5C977647}"
 	ProjectSection(SolutionItems) = preProject

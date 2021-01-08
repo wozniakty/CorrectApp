@@ -3,6 +3,7 @@
 
 <h1>Autocorrect</h1>
 <h3>Choose an Algorithm</h3>
+<p>Please note: Since this is a free azure site, and I didn't optimize the word-list storage, there's some pre-load on each set of algorithms before they run quickly</p>
 <select @bind="@selectedCorrector">
     @foreach (var option in Correctors.Options)
     {

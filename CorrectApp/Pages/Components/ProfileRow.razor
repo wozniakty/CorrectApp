@@ -2,9 +2,9 @@
 
 <tr>
     <td>@Corrector.DisplayName</td>
-    <td>@($"{Profile?.AverageSpeed.ToString() ?? "calculating"}")</td>
-    <td>@($"{Profile?.PercentMatched.ToString() ?? "calculating"}")</td>
-    <td>@($"{Profile?.AverageSpeedOnMatch.ToString() ?? "calculating"}")</td>
+    <td>@($"{RoundedAboveOne(Profile?.AverageSpeed)}")</td>
+    <td>@($"{RoundedAboveOne(Profile?.PercentMatched)}")</td>
+    <td>@($"{RoundedAboveOne(Profile?.AverageSpeedOnMatch)}")</td>
 </tr>
 
 @code {
@@ -17,5 +17,13 @@
     {
         Profile = await Profiling.Profile(Corrector);
         await base.OnInitializedAsync();
+    }    
+
+    public string RoundedAboveOne(double? num){
+        if(num == null)
+            return "calculating";
+        if(num > 1)
+            return $"{(int)num}";
+        return $"{num}";
     }
 }
